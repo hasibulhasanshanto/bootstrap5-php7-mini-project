@@ -4,6 +4,18 @@
 
   $realpath    = str_replace('\\', '/', dirname(__FILE__));
   $baseURL = substr_replace(str_replace($_SERVER['DOCUMENT_ROOT'], '', $realpath), "", -4);
+
+  $auth = 0; 
+  // session_start(); 
+  if($_SESSION){
+      if($_SESSION['auth']){
+        $auth = $_SESSION['auth'];          
+      } 
+      else{
+        $auth = 0;
+      }
+  }
+
 ?>
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-primary">
@@ -21,10 +33,17 @@
           <a class="nav-link" href="<?= $baseURL.'/pages/show.php'; ?>">All Students</a>
         </li> 
       </ul>
-      <form class="d-flex">
-        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-success" type="submit">Search</button>
-      </form>
+      <?php if($auth == 1): ?>
+        <form class="d-flex">  
+          <a href="<?= $baseURL.'/pages/auth/logout.php'; ?>" class="btn btn-danger">Logout</a>
+        </form>
+      <?php else: ?>
+        <form class="d-flex"> 
+          <a href="<?= $baseURL.'/pages/auth/register.php'; ?>" class="btn btn-warning mr-2">Register</a>
+          <a href="<?= $baseURL.'/pages/auth/login.php'; ?>" class="btn btn-danger">Login</a>
+        </form>
+      <?php endif; ?>
+      
     </div>
   </div>
 </nav>

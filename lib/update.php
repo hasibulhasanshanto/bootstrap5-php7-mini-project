@@ -1,7 +1,7 @@
 <?php
     require_once('connection.php');
     // Start the session
-    session_start();
+    // session_start();
     $id = ''; 
 
     if (isset($_POST['btn_update'])){
@@ -23,6 +23,7 @@
         else{ 
             
             $id = $_GET['id'];  
+            $s_pass = md5($s_pass);
 
             $updateSql = "UPDATE student_info SET s_name='{$s_name}', s_email='{$s_email}', s_phone='{$s_phone}', s_birth='{$s_birth}', s_gender='{$s_gender}', s_pass='{$s_pass}' WHERE id='{$id}' ";
 

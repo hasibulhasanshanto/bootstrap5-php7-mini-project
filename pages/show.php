@@ -5,7 +5,7 @@
     $error = '';
     $message = '';
     
-    session_start(); 
+    // session_start(); 
     if($_SESSION){
         if($_SESSION['success']){
             $success = $_SESSION['success'];          
@@ -32,6 +32,7 @@
 
         <div class="row">
             <div class="col-md-12 ">
+             <!-- Showing notification message  -->
                 <?php if($success):?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success! </strong> <?= $success; ?>
@@ -43,7 +44,8 @@
                         <strong>Error! </strong> <?= $error; ?>
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                     </div>
-                <?php endif;?>   
+                <?php endif;?>  
+                <!--/. Showing notification message  --> 
 
                 <div class="card border-info">
                     <h3 class="card-header">All Student Info</h3>
